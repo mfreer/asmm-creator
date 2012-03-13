@@ -9,6 +9,8 @@ NAMESPACE_URI = 'http://www.eufar.net/ASMM'
 import xml.dom.minidom
 import xml.dom.ext
 
+from PyQt4.QtCore import Qt
+from PyQt4.QtCore import QDate
 
 
 def create_asmm_xml(self, out_file_name):
@@ -23,7 +25,7 @@ def create_asmm_xml(self, out_file_name):
     flightInformation = add_element(doc, "FlightInformation", doc_root)
 
     add_element(doc, "FlightNumber", flightInformation, self.flightNumberLine.text())
-    add_element(doc, "Date", flightInformation, self.dateLine.text())
+    add_element(doc, "Date", flightInformation, self.dateLine.date().toString(Qt.ISODate))
     add_element(doc, "Campaign", flightInformation, self.campaignLine.text())
     add_element(doc, "MissionScientist", flightInformation, self.missionSciLine.text())
     add_element(doc, "FlightManager", flightInformation, self.flightManagerLine.text())
@@ -166,7 +168,8 @@ def read_asmm_xml(self, in_file_name):
     flightInformation = get_element(doc, "FlightInformation")
 
     set_text_value(self.flightNumberLine, flightInformation, "FlightNumber")
-    set_text_value(self.dateLine, flightInformation, "Date")
+    date = get_element_value(flightInformation, "Date")
+    self.dateLine.setDate(QDate.fromString(date, Qt.ISODate))
     set_text_value(self.campaignLine, flightInformation, "Campaign")
     set_text_value(self.missionSciLine, flightInformation, "MissionScientist")
     set_text_value(self.flightManagerLine, flightInformation, "FlightManager")
@@ -246,7 +249,7 @@ def read_asmm_xml(self, in_file_name):
     altitudeRanges = get_element(doc, "AltitudeRanges")
 
     set_check_values(self.altitude_ranges_check_dict, altitudeRanges, "AR_Code")
-    set_text_value(self.AROtherTextBox, altitudeRanges, "AR_Code")
+    set_text_value(self.AROtherTextBox, altitudeRanges, "AR_Other")
 
     #############################
     # Flight Types
@@ -289,6 +292,7 @@ def read_asmm_xml(self, in_file_name):
     ##############################
 
     set_text_value(self.OtherCommentsTextBox, doc, "OtherComments")
+
 
 def get_element(parent, element_name):
 
