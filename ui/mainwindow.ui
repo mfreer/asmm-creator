@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>760</height>
+    <width>820</width>
+    <height>767</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,12 +28,12 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>826</width>
-         <height>665</height>
+         <width>798</width>
+         <height>672</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
+        <item row="0" column="1">
          <widget class="QToolBox" name="toolBox">
           <property name="minimumSize">
            <size>
@@ -52,156 +52,165 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>808</width>
-             <height>296</height>
+             <width>780</width>
+             <height>303</height>
             </rect>
            </property>
            <attribute name="label">
             <string>Flight Information</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_2">
+           <layout class="QFormLayout" name="formLayout">
             <item row="0" column="0">
-             <layout class="QFormLayout" name="formLayout">
-              <property name="fieldGrowthPolicy">
-               <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>Flight Number</string>
               </property>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_2">
-                <property name="text">
-                 <string>Flight Number</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="flightNumberLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_3">
-                <property name="text">
-                 <string>Date</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="dateLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>150</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_4">
-                <property name="text">
-                 <string>Campaign</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLineEdit" name="campaignLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_5">
-                <property name="text">
-                 <string>Mission Scientist</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QLineEdit" name="missionSciLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_6">
-                <property name="text">
-                 <string>Flight Manager</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="1">
-               <widget class="QLineEdit" name="flightManagerLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>Platform/Aircraft</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="1">
-               <widget class="QLineEdit" name="platformLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0">
-               <widget class="QLabel" name="label_8">
-                <property name="text">
-                 <string>Operator</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="1">
-               <widget class="QLineEdit" name="operatorLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="text">
-                 <string>Country</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="1">
-               <widget class="QLineEdit" name="countryLine">
-                <property name="maximumSize">
-                 <size>
-                  <width>300</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLineEdit" name="flightNumberLine">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>Date (yyyy-mm-dd)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QDateEdit" name="dateLine">
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>300</height>
+               </size>
+              </property>
+              <property name="time">
+               <time>
+                <hour>23</hour>
+                <minute>0</minute>
+                <second>0</second>
+               </time>
+              </property>
+              <property name="displayFormat">
+               <string>yyyy-MM-dd</string>
+              </property>
+              <property name="calendarPopup">
+               <bool>true</bool>
+              </property>
+              <property name="timeSpec">
+               <enum>Qt::UTC</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>Campaign</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="campaignLine">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Mission Scientist</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="missionSciLine">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>Flight Manager</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QLineEdit" name="flightManagerLine">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Platform/Aircraft</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QLineEdit" name="platformLine">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>Operator</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLineEdit" name="operatorLine">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="0">
+             <widget class="QLabel" name="label_9">
+              <property name="text">
+               <string>Country</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QLineEdit" name="countryLine">
+              <property name="maximumSize">
+               <size>
+                <width>300</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -210,8 +219,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>808</width>
-             <height>296</height>
+             <width>780</width>
+             <height>303</height>
             </rect>
            </property>
            <attribute name="label">
@@ -322,6 +331,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>765</width>
+             <height>328</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Scientific Aims</string>
            </attribute>
@@ -863,6 +880,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Geographical Region</string>
            </attribute>
@@ -959,6 +984,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_4">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>765</width>
+             <height>328</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Atmospheric Synoptic Features</string>
            </attribute>
@@ -1165,6 +1198,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_5">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Cloud Types and Forms Sampled During Flight</string>
            </attribute>
@@ -1303,6 +1344,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_6">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Cloud, Precipitation and Aerosol Particles Sampled</string>
            </attribute>
@@ -1427,6 +1476,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_7">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Land or Ocean Surfaces Overflown</string>
            </attribute>
@@ -1551,6 +1608,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_8">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Altitude Ranges of Measurement</string>
            </attribute>
@@ -1707,6 +1772,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_9">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Types of Flight Manoeuvre</string>
            </attribute>
@@ -1850,6 +1923,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_10">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Satellite Coordination</string>
            </attribute>
@@ -2145,6 +2226,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_11">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Supporting Surface-Based Observations</string>
            </attribute>
@@ -2416,6 +2505,14 @@
            </layout>
           </widget>
           <widget class="QWidget" name="page_12">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>780</width>
+             <height>303</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>Additional Notes on the Flight</string>
            </attribute>
@@ -2465,7 +2562,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>848</width>
+     <width>820</width>
      <height>21</height>
     </rect>
    </property>

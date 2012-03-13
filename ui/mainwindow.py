@@ -4,16 +4,19 @@
 Module implementing MainWindow.
 """
 from PyQt4 import QtGui
+from PyQt4.QtCore import QDate
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import SIGNAL
 from PyQt4.QtCore import QPoint
 from PyQt4.QtCore import QString
 from PyQt4.QtCore import pyqtSignature
+from PyQt4.QtGui import QCalendarWidget
 from PyQt4.QtGui import QCheckBox
 from PyQt4.QtGui import QMainWindow
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog
 from PyQt4.QtGui import QLineEdit
+from PyQt4.QtGui import QListWidget
 from PyQt4.QtGui import QListWidgetItem
 from PyQt4.QtGui import QMessageBox
 from PyQt4.QtGui import QTextEdit
@@ -25,7 +28,6 @@ from Ui_mainwindow import Ui_MainWindow
 
 from asmm_xml import create_asmm_xml
 from asmm_xml import read_asmm_xml
-
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
@@ -42,10 +44,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.research_vessel_list = []
         self.arm_site_list = []
         self.arm_mobile_list = []
+        self.dateLine.setDate(QDate.currentDate())
 
         self.out_file_name = None
         self.saved = False
         self.modified = False
+
+
 
         all_check_boxes = self.findChildren(QCheckBox)
         for check_box in all_check_boxes:
@@ -59,9 +64,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for widget in all_line_edits:
             QObject.connect(widget, SIGNAL("textChanged(QString)"), self.set_modified)
 
+        QObject.connect(self.dateLine, SIGNAL("dateChanged(QDate)"), self.set_modified)
 
         self.make_window_title()
-
 
 
         self.scientific_aims_check_dict = {self.satelliteCalValCheck:'satelliteCalVal',
@@ -193,7 +198,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        addListItem(self, "Add Ground Site", "Ground Site Name:",
+        self.addListItem("Add Ground Site", "Ground Site Name:",
                     self.groundListWidget, self.ground_site_list)
 
     @pyqtSignature("")
@@ -201,14 +206,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        removeListItem(self.groundListWidget, self.ground_site_list)
+        self.removeListItem(self.groundListWidget, self.ground_site_list)
 
     @pyqtSignature("")
     def on_armAddButton_clicked(self):
         """
         Slot documentation goes here.
         """
-        addListItem(self, "Add ARM Site", "ARM Site Name:",
+        self.addListItem("Add ARM Site", "ARM Site Name:",
                     self.armListWidget, self.arm_site_list)
 
     @pyqtSignature("")
@@ -216,14 +221,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        removeListItem(self.armListWidget, self.arm_site_list)
+        self.removeListItem(self.armListWidget, self.arm_site_list)
 
     @pyqtSignature("")
     def on_armMobileAddButton_clicked(self):
         """
         Slot documentation goes here.
         """
-        addListItem(self, "Add ARM Mobile Site", "ARM Mobile Site Name:",
+        self.addListItem("Add ARM Mobile Site", "ARM Mobile Site Name:",
                     self.armMobileListWidget, self.arm_mobile_list)
 
     @pyqtSignature("")
@@ -231,14 +236,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        removeListItem(self.armMobileListWidget, self.arm_mobile_list)
+        self.removeListItem(self.armMobileListWidget, self.arm_mobile_list)
 
     @pyqtSignature("")
     def on_vesselAddButton_clicked(self):
         """
         Slot documentation goes here.
         """
-        addListItem(self, "Add Research Vessel", "Research Vessel Name:",
+        self.addListItem("Add Research Vessel", "Research Vessel Name:",
                     self.vesselListWidget, self.research_vessel_list)
 
     @pyqtSignature("")
@@ -246,7 +251,42 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
-        removeListItem(self.vesselListWidget, self.research_vessel_list)
+        self.removeListItem(self.vesselListWidget, self.research_vessel_list)
+
+    @pyqtSignature("QModelIndex")
+    def on_groundListWidget_doubleClicked(self, index):
+        """
+        Slot documentation goes here.
+        """
+        self.addListItem("Add Ground Site", "Ground Site Name:",
+                    self.groundListWidget, self.ground_site_list)
+
+    @pyqtSignature("QModelIndex")
+    def on_armListWidget_doubleClicked(self, index):
+        """
+        Slot documentation goes here.
+        """
+        self.addListItem("Add ARM Site", "ARM Site Name:",
+            self.armListWidget, self.arm_site_list)
+
+
+
+    @pyqtSignature("QModelIndex")
+    def on_armMobileListWidget_doubleClicked(self, index):
+        """
+        Slot documentation goes here.
+        """
+        self.addListItem("Add ARM Mobile Site", "ARM Mobile Site Name:",
+            self.armMobileListWidget, self.arm_mobile_list)
+
+    @pyqtSignature("QModelIndex")
+    def on_vesselListWidget_doubleClicked(self, index):
+        """
+        Slot documentation goes here.
+        """
+        self.addListItem("Add Research Vessel", "Research Vessel Name:",
+                         self.vesselListWidget, self.research_vessel_list)
+
 
     @pyqtSignature("")
     def on_generateXMLButton_clicked(self):
@@ -262,6 +302,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot documentation goes here.
         """
+        if self.modified:
+            result = self.make_onsave_msg_box()
+
+            if result == QMessageBox.Save:
+                self.save_document()
+                if self.modified:
+                    return
+                else:
+                    self.reset_all_fields()
+            elif result == QMessageBox.Discard:
+                self.reset_all_fields()
+                return
+            else:
+                return
+
+        self.reset_all_fields()
 
 
     @pyqtSignature("")
@@ -277,21 +333,36 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Slot documentation goes here.
         """
 
-        self.save_document()
+        self.save_document(save_as=True)
 
     @pyqtSignature("")
     def on_actionOpen_activated(self):
         """
         Slot documentation goes here.
         """
-        (out_file_name, filter) = QFileDialog.getOpenFileNameAndFilter(self, "Open XML File", filter="XML Files (*.xml)")
+        if self.modified:
+            result = self.make_onsave_msg_box()
 
-        read_asmm_xml(self, out_file_name)
+            if result == QMessageBox.Save:
+                self.save_document()
+                if self.modified:
+                    return
+                else:
+                    self.reset_all_fields()
+                    self.open_file()
+                    return
+            elif result == QMessageBox.Discard:
+                self.reset_all_fields()
+                self.open_file()
+                return
+            else:
+                return
 
-        self.saved = True
-        self.modified = False
-        self.out_file_name = out_file_name
-        self.make_window_title()
+        self.reset_all_fields()
+        print "opening file"
+        self.open_file()
+
+
 
     @pyqtSignature("")
     def on_actionExit_activated(self):
@@ -302,21 +373,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def closeEvent(self, event):
         if self.modified:
-            msgBox = QMessageBox()
-            msgBox.setText("The document has been modified.")
-            msgBox.setInformativeText("Do ynou want to save your changes?")
-            msgBox.setStandardButtons(QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
-            msgBox.setDefaultButton(QMessageBox.Save)
-            msgBox.setIcon(QMessageBox.Warning)
-
-            screen_center = QtGui.QDesktopWidget().availableGeometry().center()
-            msgBox.move(screen_center)
-            result = msgBox.exec_()
-
+            result = self.make_onsave_msg_box()
 
             if result == QMessageBox.Save:
                 self.save_document()
-                event.accept()
+                if self.modified:
+                    event.ignore()
+                else:
+                    event.accept()
             elif result == QMessageBox.Discard:
                 event.accept()
             else:
@@ -337,19 +401,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
     def set_modified(self):
-        self.modified = True
-        self.make_window_title()
+        if not self.modified:
+            self.modified = True
+            self.make_window_title()
 
-    def save_document(self, out_file_name=None):
+    def save_document(self, save_as=False):
 
-        if not out_file_name:
+
+        if not self.out_file_name or save_as:
             out_file_name = self.get_file_name()
 
             if out_file_name:
                 create_asmm_xml(self, out_file_name)
                 self.out_file_name = out_file_name
         else:
-            create_asmm_xml(self, out_file_name)
+            create_asmm_xml(self, self.out_file_name)
 
         self.make_window_title()
 
@@ -357,19 +423,76 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         out_file_name = QFileDialog.getSaveFileName(self, "Save XML File")
         return out_file_name
 
+    def reset_all_fields(self):
+
+        all_check_boxes = self.findChildren(QCheckBox)
+        for check_box in all_check_boxes:
+            check_box.setCheckState(False)
+
+        all_text_edits = self.findChildren(QTextEdit)
+        for widget in all_text_edits:
+            widget.clear()
+
+        all_line_edits = self.findChildren(QLineEdit)
+        for widget in all_line_edits:
+            widget.clear()
+
+        all_list_widgets = self.findChildren(QListWidget)
+        for widget in all_list_widgets:
+            widget.clear()
+
+        self.ground_site_list = []
+        self.research_vessel_list = []
+        self.arm_site_list = []
+        self.arm_mobile_list = []
+        self.dateLine.setDate(QDate.currentDate())
+
+        self.out_file_name = None
+
+
+        self.modified = False
+        self.saved = False
+        self.make_window_title()
+
+    def make_onsave_msg_box(self):
+        msgBox = QMessageBox()
+        msgBox.setText("The document has been modified.")
+        msgBox.setInformativeText("Do you want to save your changes?")
+        msgBox.setStandardButtons(QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
+        msgBox.setDefaultButton(QMessageBox.Save)
+        msgBox.setIcon(QMessageBox.Warning)
+
+        screen_center = QtGui.QDesktopWidget().availableGeometry().center()
+        msgBox.move(screen_center)
+        result = msgBox.exec_()
+
+        return result
+
+    def open_file(self):
+        (out_file_name, filter) = QFileDialog.getOpenFileNameAndFilter(self, "Open XML File", filter="XML Files (*.xml)")
+
+        if out_file_name:
+            read_asmm_xml(self, out_file_name)
+
+            self.saved = True
+            self.modified = False
+            self.out_file_name = out_file_name
+            self.make_window_title()
 
 
 
-def addListItem(self, title, label, listWidget, item_list):
-    (new_item, response) = QInputDialog.getText(self, title, label, text=QString(),)
+    def addListItem(self, title, label, listWidget, item_list):
+        (new_item, response) = QInputDialog.getText(self, title, label, text=QString(),)
 
-    if new_item and response:
-        item_list.append(new_item)
-        listWidget.addItem(new_item)
+        if new_item and response:
+            self.modified = True
+            self.saved = False
+            item_list.append(new_item)
+            listWidget.addItem(new_item)
 
 
 
-def removeListItem(listWidget, item_list):
+    def removeListItem(self, listWidget, item_list):
 
         selected_line = listWidget.currentRow()
 
@@ -377,6 +500,4 @@ def removeListItem(listWidget, item_list):
             selected_item = listWidget.currentItem()
             item_list.remove(selected_item.text())
             listWidget.takeItem(selected_line)
-
-
 
