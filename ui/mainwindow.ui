@@ -219,8 +219,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>360</width>
+             <height>104</height>
             </rect>
            </property>
            <attribute name="label">
@@ -335,7 +335,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>765</width>
+             <width>651</width>
              <height>328</height>
             </rect>
            </property>
@@ -884,8 +884,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>239</width>
+             <height>199</height>
             </rect>
            </property>
            <attribute name="label">
@@ -988,7 +988,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>765</width>
+             <width>398</width>
              <height>328</height>
             </rect>
            </property>
@@ -1202,8 +1202,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>371</width>
+             <height>274</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1348,8 +1348,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>292</width>
+             <height>249</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1480,8 +1480,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>202</width>
+             <height>249</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1612,8 +1612,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>269</width>
+             <height>205</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1776,8 +1776,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>342</width>
+             <height>228</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1927,8 +1927,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>303</width>
+             <height>246</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2230,8 +2230,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>314</width>
+             <height>226</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2509,8 +2509,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>96</width>
+             <height>99</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2580,6 +2580,7 @@
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionASMM_CreatorAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuAbout"/>
@@ -2608,6 +2609,11 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionASMM_CreatorAbout">
+   <property name="text">
+    <string>ASMM Creator...</string>
    </property>
   </action>
  </widget>

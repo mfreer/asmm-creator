@@ -298,7 +298,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
     @pyqtSignature("")
-    def on_actionNew_activated(self):
+    def on_actionNew_triggered(self):
         """
         Slot documentation goes here.
         """
@@ -321,14 +321,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
     @pyqtSignature("")
-    def on_actionSave_activated(self):
+    def on_actionSave_triggered(self):
         """
         Slot documentation goes here.
         """
-        self.save_document(self.out_file_name)
+        self.save_document()
 
     @pyqtSignature("")
-    def on_actionSave_As_activated(self):
+    def on_actionSave_As_triggered(self):
         """
         Slot documentation goes here.
         """
@@ -336,7 +336,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.save_document(save_as=True)
 
     @pyqtSignature("")
-    def on_actionOpen_activated(self):
+    def on_actionOpen_triggered(self):
         """
         Slot documentation goes here.
         """
@@ -359,13 +359,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 return
 
         self.reset_all_fields()
-        print "opening file"
         self.open_file()
 
 
 
     @pyqtSignature("")
-    def on_actionExit_activated(self):
+    def on_actionExit_triggered(self):
         """
         Slot documentation goes here.
         """
@@ -500,4 +499,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             selected_item = listWidget.currentItem()
             item_list.remove(selected_item.text())
             listWidget.takeItem(selected_line)
+
+    @pyqtSignature("")
+    def on_actionASMM_CreatorAbout_triggered(self):
+        """
+        Slot documentation goes here.
+        """
+
+        aboutBox = QMessageBox()
+        aboutBox.about(self, "About ASMM Metadata Creator",
+                       "The ASMM Metadata Creator was developed by EUFAR using Python and PyQT. <br> <br>" +
+                       "For more information, or to submit a bug report, please contact <a href='mailto:eufarsp@eufar.net'>eufarsp@eufar.net</a> <br><br>" +
+                       "The latest version and source code of the ASMM metadata creator can be found at <a href=http://asmm-creator.googlecode.com>http://asmm-creator.googlecode.com</a>")
 
