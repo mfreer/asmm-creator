@@ -7,7 +7,6 @@ Created on Mar 8, 2012
 NAMESPACE_URI = 'http://www.eufar.net/ASMM'
 
 import xml.dom.minidom
-import xml.dom.ext
 
 from PyQt4.QtCore import Qt
 from PyQt4.QtCore import QDate
@@ -17,6 +16,7 @@ def create_asmm_xml(self, out_file_name):
     doc = xml.dom.minidom.Document()
 
     doc_root = add_element(doc, "MissionMetadata", doc)
+    doc_root.setAttribute("xmlns:asmm", NAMESPACE_URI)
 
 
     ############################
@@ -149,7 +149,8 @@ def create_asmm_xml(self, out_file_name):
 
     #xml.dom.ext.PrettyPrint(doc)
     f = open(out_file_name, 'w')
-    xml.dom.ext.PrettyPrint(doc, f)
+    f.write(doc.toprettyxml(encoding='UTF-8'))
+#    xml.dom.ext.PrettyPrint(doc, f)
     f.close()
 
     self.saved = True
@@ -307,7 +308,7 @@ def get_element_value(parent, element_name):
         nodes = element.childNodes
         for node in nodes:
             if node.nodeType == node.TEXT_NODE:
-                return node.data
+                return node.data.strip()
 
 def get_element_values(parent, element_name):
 
@@ -315,7 +316,7 @@ def get_element_values(parent, element_name):
 
     elements = parent.getElementsByTagNameNS(NAMESPACE_URI, element_name)
     for element in elements:
-        value_list.append(element.childNodes[0].data)
+        value_list.append(element.childNodes[0].data.strip())
 
     return value_list
 
@@ -324,7 +325,7 @@ def set_check_values(check_dict, parent, element_name):
     elements = parent.getElementsByTagNameNS(NAMESPACE_URI, element_name)
     for element in elements:
 
-        check_widget = find_key(check_dict, element.childNodes[0].data)
+        check_widget = find_key(check_dict, element.childNodes[0].data.strip())
         check_widget.setChecked(True)
 
 
@@ -339,7 +340,7 @@ def set_text_value(text_widget, parent, element_name):
 def add_element(doc, element_name, parent, value=None):
     new_element = doc.createElementNS(NAMESPACE_URI, "asmm:" + element_name)
     if value:
-        new_text = doc.createTextNode(str(value))
+        new_text = doc.createTextNode(unicode(value))
         new_element.appendChild(new_text)
 
     parent.appendChild(new_element)
