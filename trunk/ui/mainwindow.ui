@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
-    <height>767</height>
+    <width>749</width>
+    <height>774</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,12 +28,12 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>798</width>
-         <height>672</height>
+         <width>727</width>
+         <height>679</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="1">
+        <item row="0" column="0">
          <widget class="QToolBox" name="toolBox">
           <property name="minimumSize">
            <size>
@@ -52,14 +52,17 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>780</width>
-             <height>303</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
             <string>Flight Information</string>
            </attribute>
            <layout class="QFormLayout" name="formLayout">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+            </property>
             <item row="0" column="0">
              <widget class="QLabel" name="label_2">
               <property name="text">
@@ -161,14 +164,14 @@
               </property>
              </widget>
             </item>
-            <item row="5" column="0">
+            <item row="6" column="0">
              <widget class="QLabel" name="label_7">
               <property name="text">
                <string>Platform/Aircraft</string>
               </property>
              </widget>
             </item>
-            <item row="5" column="1">
+            <item row="6" column="1">
              <widget class="QLineEdit" name="platformLine">
               <property name="maximumSize">
                <size>
@@ -178,14 +181,14 @@
               </property>
              </widget>
             </item>
-            <item row="6" column="0">
+            <item row="7" column="0">
              <widget class="QLabel" name="label_8">
               <property name="text">
                <string>Operator</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="7" column="1">
              <widget class="QLineEdit" name="operatorLine">
               <property name="maximumSize">
                <size>
@@ -195,14 +198,14 @@
               </property>
              </widget>
             </item>
-            <item row="7" column="0">
+            <item row="8" column="0">
              <widget class="QLabel" name="label_9">
               <property name="text">
                <string>Country</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="8" column="1">
              <widget class="QLineEdit" name="countryLine">
               <property name="maximumSize">
                <size>
@@ -219,8 +222,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>360</width>
-             <height>104</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -335,7 +338,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>651</width>
+             <width>694</width>
              <height>328</height>
             </rect>
            </property>
@@ -884,14 +887,117 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>239</width>
-             <height>199</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
             <string>Geographical Region</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <widget class="QGroupBox" name="groupBox">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="title">
+               <string>Geographic Bounding Box</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_41">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_50">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_46">
+                   <item>
+                    <widget class="QLabel" name="label_31">
+                     <property name="text">
+                      <string>North/South Latitude</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="northBoundLatitudeLine"/>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="southBoundLatitudeLine"/>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_47">
+                   <item>
+                    <widget class="QLabel" name="label_29">
+                     <property name="text">
+                      <string>West/East Longitude</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="westBoundLongitudeLine"/>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="eastBoundLongitudeLine"/>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_49">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_48">
+                   <item>
+                    <widget class="QLabel" name="label_30">
+                     <property name="text">
+                      <string>Min/Max Altitude (m)</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="minAltitudeLine"/>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="maxAltitudeLine"/>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_29">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Preferred</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>70</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="readBoundingBoxButton">
+                   <property name="text">
+                    <string>Read bounding box information from NetCDF</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_17">
               <item>
@@ -974,7 +1080,7 @@
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>100</height>
+                  <height>75</height>
                  </size>
                 </property>
                </widget>
@@ -988,7 +1094,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>398</width>
+             <width>694</width>
              <height>328</height>
             </rect>
            </property>
@@ -1202,8 +1308,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>371</width>
-             <height>274</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1348,8 +1454,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>292</width>
-             <height>249</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1480,8 +1586,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>202</width>
-             <height>249</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1612,8 +1718,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>269</width>
-             <height>205</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1776,8 +1882,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>342</width>
-             <height>228</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1927,8 +2033,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>303</width>
-             <height>246</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2230,8 +2336,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>314</width>
-             <height>226</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2509,8 +2615,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>96</width>
-             <height>99</height>
+             <width>709</width>
+             <height>310</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2562,7 +2668,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>820</width>
+     <width>749</width>
      <height>21</height>
     </rect>
    </property>

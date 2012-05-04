@@ -6,6 +6,7 @@ Created on Mar 8, 2012
 
 NAMESPACE_URI = 'http://www.eufar.net/ASMM'
 
+import datetime
 import xml.dom.minidom
 
 from PyQt4.QtCore import Qt
@@ -18,6 +19,12 @@ def create_asmm_xml(self, out_file_name):
     doc_root = add_element(doc, "MissionMetadata", doc)
     doc_root.setAttribute("xmlns:asmm", NAMESPACE_URI)
 
+    current_date = datetime.date.isoformat(datetime.date.today())
+
+    if not self.create_date:
+        self.create_date = current_date
+    add_element(doc, "CreationDate", doc_root, self.create_date)
+    add_element(doc, "RevisionDate", doc_root, current_date)
 
     ############################
     # Flight Information
@@ -32,6 +39,17 @@ def create_asmm_xml(self, out_file_name):
     add_element(doc, "Platform", flightInformation, self.platformLine.text())
     add_element(doc, "Operator", flightInformation, self.operatorLine.text())
     add_element(doc, "Country", flightInformation, self.countryLine.text())
+
+    geographicBoundingBox = add_element(doc, "GeographicBoundingBox", flightInformation)
+
+    add_element(doc, "westBoundLongitude", geographicBoundingBox, self.westBoundLongitudeLine.text())
+    add_element(doc, "eastBoundLongitude", geographicBoundingBox, self.eastBoundLongitudeLine.text())
+    add_element(doc, "northBoundLatitude", geographicBoundingBox, self.northBoundLatitudeLine.text())
+    add_element(doc, "southBoundLatitude", geographicBoundingBox, self.southBoundLatitudeLine.text())
+    add_element(doc, "minAltitude", geographicBoundingBox, self.minAltitudeLine.text())
+    add_element(doc, "maxAltitude", geographicBoundingBox, self.maxAltitudeLine.text())
+
+
 
     ###########################
     # Metadata Contact Info
@@ -162,9 +180,12 @@ def read_asmm_xml(self, in_file_name):
     f = open(in_file_name, 'r')
     doc = xml.dom.minidom.parse(f)
 
+
     ############################
     # Flight Information
     ############################
+
+    self.create_date = get_element_value(doc, "CreationDate")
 
     flightInformation = get_element(doc, "FlightInformation")
 
@@ -177,6 +198,14 @@ def read_asmm_xml(self, in_file_name):
     set_text_value(self.platformLine, flightInformation, "Platform")
     set_text_value(self.operatorLine, flightInformation, "Operator")
     set_text_value(self.countryLine, flightInformation, "Country")
+
+    geographicBoundingBox = get_element(flightInformation, "GeographicBoundingBox")
+    set_text_value(self.westBoundLongitudeLine, geographicBoundingBox, "westBoundLongitude")
+    set_text_value(self.eastBoundLongitudeLine, geographicBoundingBox, "eastBoundLongitude")
+    set_text_value(self.northBoundLatitudeLine, geographicBoundingBox, "northBoundLatitude")
+    set_text_value(self.southBoundLatitudeLine, geographicBoundingBox, "southBoundLatitude")
+    set_text_value(self.minAltitudeLine, geographicBoundingBox, "minAltitude")
+    set_text_value(self.maxAltitudeLine, geographicBoundingBox, "maxAltitude")
 
     #############################
     # Metadata Contact Info

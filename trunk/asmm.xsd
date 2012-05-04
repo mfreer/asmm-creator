@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.eufar.net/ASMM" xmlns:asmm="http://www.eufar.net/ASMM">
+  <xs:element name="MissionMetadata">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:CreationDate"/>
+        <xs:element ref="asmm:RevisionDate"/>
+        <xs:element ref="asmm:FlightInformation"/>
+        <xs:element ref="asmm:ContactInfo"/>
+        <xs:element ref="asmm:ScientificAims"/>
+        <xs:element ref="asmm:GeographicalRegion"/>
+        <xs:element ref="asmm:AtmosFeatures"/>
+        <xs:element ref="asmm:CloudTypes"/>
+        <xs:element ref="asmm:ParticlesSampled"/>
+        <xs:element ref="asmm:SurfacesOverflown"/>
+        <xs:element ref="asmm:AltitudeRanges"/>
+        <xs:element ref="asmm:FlightTypes"/>
+        <xs:element ref="asmm:SatelliteCoordination"/>
+        <xs:element ref="asmm:SurfaceObs"/>
+        <xs:element ref="asmm:OtherComments"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreationDate" type="xs:date"/>
+  <xs:element name="RevisionDate" type="xs:date"/>  
+  <xs:element name="FlightInformation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:FlightNumber"/>
+        <xs:element ref="asmm:Date"/>
+        <xs:element ref="asmm:Campaign"/>
+        <xs:element ref="asmm:MissionScientist"/>
+        <xs:element ref="asmm:FlightManager" minOccurs="0"/>
+        <xs:element ref="asmm:Platform"/>
+        <xs:element ref="asmm:Operator"/>
+        <xs:element ref="asmm:Country"/>
+        <xs:element ref="asmm:GeographicBoundingBox"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FlightNumber" type="xs:string"/>
+  <xs:element name="Date" type="xs:date"/>
+  <xs:element name="Campaign" type="xs:string"/>
+  <xs:element name="MissionScientist" type="xs:string"/>
+  <xs:element name="FlightManager" type="xs:string"/>
+  <xs:element name="Platform" type="xs:string"/>
+  <xs:element name="Operator" type="xs:string"/>
+  <xs:element name="Country" type="xs:string"/>
+  <xs:element name="GeographicBoundingBox">
+    <xs:complexType>
+      <xs:all>
+        <xs:element ref="asmm:westBoundLongitude"/>
+        <xs:element ref="asmm:eastBoundLongitude"/>
+        <xs:element ref="asmm:northBoundLatitude"/>
+        <xs:element ref="asmm:southBoundLatitude"/>
+        <xs:element ref="asmm:minAltitude"/>
+        <xs:element ref="asmm:maxAltitude"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="westBoundLongitude" type="xs:decimal"/>
+  <xs:element name="eastBoundLongitude" type="xs:decimal"/>
+  <xs:element name="northBoundLatitude" type="xs:decimal"/>
+  <xs:element name="southBoundLatitude" type="xs:decimal"/>
+  <xs:element name="minAltitude" type="xs:decimal"/>
+  <xs:element name="maxAltitude" type="xs:decimal"/>
+  <xs:element name="ContactInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:ContactName"/>
+        <xs:element ref="asmm:ContactRole"/>
+        <xs:element ref="asmm:ContactEmail"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ContactName" type="xs:string"/>
+  <xs:element name="ContactRole" type="xs:string"/>
+  <xs:element name="ContactEmail" type="xs:string"/>
+  <xs:element name="ScientificAims">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:SA_Code" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:SA_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SA_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="satelliteCalVal"/>
+        <xs:enumeration value="aerosol"/>
+        <xs:enumeration value="aerosolRadiative"/>
+        <xs:enumeration value="aerosolMicrophysical"/>
+        <xs:enumeration value="anthroPollution"/>
+        <xs:enumeration value="mesoscaleImpacts"/>
+        <xs:enumeration value="cloudMicrophysics"/>
+        <xs:enumeration value="cloudDynamics"/>
+        <xs:enumeration value="cloudRaditave"/>
+        <xs:enumeration value="cloudConvection"/>
+        <xs:enumeration value="blCloud"/>
+        <xs:enumeration value="blDynamics"/>
+        <xs:enumeration value="radiation"/>
+        <xs:enumeration value="radiationAtmosSpectroscopy"/>
+        <xs:enumeration value="radiationSurfProperties"/>
+        <xs:enumeration value="radiationOther"/>
+        <xs:enumeration value="gasChem"/>
+        <xs:enumeration value="gasChemOxidants"/>
+        <xs:enumeration value="gasChemOrganics"/>
+        <xs:enumeration value="gasChemOther"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SA_Other" type="xs:string"/>
+  <xs:element name="GeographicalRegion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:GR_Code" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:GR_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GR_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="polar"/>
+        <xs:enumeration value="midLatitudes"/>
+        <xs:enumeration value="subTropical"/>
+        <xs:enumeration value="tropical"/>
+        <xs:enumeration value="maritime"/>
+        <xs:enumeration value="continental"/>
+        <xs:enumeration value="oceanicIslands"/>
+        <xs:enumeration value="other"/>
+     </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="GR_Other" type="xs:string"/>
+  <xs:element name="AtmosFeatures">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:AF_Code" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element ref="asmm:AF_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AF_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="stationary"/>
+        <xs:enumeration value="stationaryAnticyclonic"/>
+        <xs:enumeration value="stationaryCyclonic"/>
+        <xs:enumeration value="warmFront"/>
+        <xs:enumeration value="warmConveyorBelt"/>
+        <xs:enumeration value="coldFront"/>
+        <xs:enumeration value="occludedFront"/>
+        <xs:enumeration value="warmSector"/>
+        <xs:enumeration value="postColdFrontalAirMass"/>
+        <xs:enumeration value="arcticColdAirOutbreak"/>
+        <xs:enumeration value="orographicInfluence"/>
+        <xs:enumeration value="seaBreezeFront"/>
+        <xs:enumeration value="stratosphericFold"/>
+        <xs:enumeration value="extendedConvergenceLine"/>
+        <xs:enumeration value="easterlyWave"/>
+        <xs:enumeration value="equatorialWave"/>
+        <xs:enumeration value="tropicalCyclone"/>
+        <xs:enumeration value="mesoscaleOrganizedConvection"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="AF_Other"/>
+  <xs:element name="CloudTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:CT_Code" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:CT_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CT_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="waterClouds"/>
+        <xs:enumeration value="mixedPhaseClouds"/>
+        <xs:enumeration value="iceClouds"/>
+        <xs:enumeration value="cirrus"/>
+        <xs:enumeration value="contrails"/>
+        <xs:enumeration value="stratocumulus"/>
+        <xs:enumeration value="shallowCumulus"/>
+        <xs:enumeration value="cumulusCongestus"/>
+        <xs:enumeration value="cumulonimbusToweringCumulus"/>
+        <xs:enumeration value="altostratusAltocumulus"/>
+        <xs:enumeration value="waveClouds"/>
+        <xs:enumeration value="deepFrontalStratiformClouds"/>
+        <xs:enumeration value="cloudFreeAboveAircraft"/>
+        <xs:enumeration value="cloudFreeBelowAircraft"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="CT_Other" type="xs:string"/>
+  <xs:element name="ParticlesSampled">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:PS_Code" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:PS_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PS_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="rain"/>
+        <xs:enumeration value="drizzle"/>
+        <xs:enumeration value="droplets"/>
+        <xs:enumeration value="pristineIceCrystals"/>
+        <xs:enumeration value="snowOrAggregates"/>
+        <xs:enumeration value="graupelOrHail"/>
+        <xs:enumeration value="seaSaltAerosol"/>
+        <xs:enumeration value="continentalAerosol"/>
+        <xs:enumeration value="urbanPlume"/>
+        <xs:enumeration value="biomassBurning"/>
+        <xs:enumeration value="desertOrMineralDust"/>
+        <xs:enumeration value="volcanicAsh"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PS_Other" type="xs:string"/>
+  <xs:element name="SurfacesOverflown">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:SO_Code" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:SO_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SO_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="ocean"/>
+        <xs:enumeration value="semiArid"/>
+        <xs:enumeration value="seaIce"/>
+        <xs:enumeration value="desert"/>
+        <xs:enumeration value="snow"/>
+        <xs:enumeration value="urban"/>
+        <xs:enumeration value="lakeIce"/>
+        <xs:enumeration value="mountainous"/>
+        <xs:enumeration value="vegetation"/>
+        <xs:enumeration value="hilly"/>
+        <xs:enumeration value="forest"/>
+        <xs:enumeration value="flat"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SO_Other" type="xs:string"></xs:element>
+  <xs:element name="AltitudeRanges">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:AR_Code" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:AR_Other"  minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AR_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="boundaryLayer"/>
+        <xs:enumeration value="blNearSurface"/>
+        <xs:enumeration value="blSubCloud"/>
+        <xs:enumeration value="blInCloud"/>
+        <xs:enumeration value="lowerTroposphere"/>
+        <xs:enumeration value="midTroposphere"/>
+        <xs:enumeration value="upperTroposphere"/>
+        <xs:enumeration value="lowerStratosphere"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="AR_Other" type="xs:string"/>
+  <xs:element name="FlightTypes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:FT_Code" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:FT_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FT_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="straightLevelRuns"/>
+        <xs:enumeration value="stackedStraightLevelRuns"/>
+        <xs:enumeration value="separatedStraightLevelRuns"/>
+        <xs:enumeration value="racetracks"/>
+        <xs:enumeration value="orbits"/>
+        <xs:enumeration value="lagrangianDescents"/>
+        <xs:enumeration value="deepProfileAscentsDescents"/>
+        <xs:enumeration value="dropsondeDeployed"/>
+        <xs:enumeration value="selfCalibration"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="FT_Other" type="xs:string"/>
+  <xs:element name="SatelliteCoordination">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:SC_Code" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element ref="asmm:SC_Other" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SC_Code">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="polarMetop"/>
+        <xs:enumeration value="polarNpoess"/>
+        <xs:enumeration value="polarAtrain"/>
+        <xs:enumeration value="polarOther"/>
+        <xs:enumeration value="geosynchMsg"/>
+        <xs:enumeration value="geosynchOther"/>
+        <xs:enumeration value="modis"/>
+        <xs:enumeration value="cloudsat"/>
+        <xs:enumeration value="caliop"/>
+        <xs:enumeration value="iasi"/>
+        <xs:enumeration value="airs"/>
+        <xs:enumeration value="cris"/>
+        <xs:enumeration value="amsuMhs"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="SC_Other" type="xs:string"/>
+  <xs:element name="SurfaceObs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="asmm:GroundSite"/>
+        <xs:element ref="asmm:ResearchVessel"/>
+        <xs:element ref="asmm:ArmSite"/>
+        <xs:element ref="asmm:ArmMobile"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GroundSite" type="xs:string"/>
+  <xs:element name="ResearchVessel" type="xs:string"/>
+  <xs:element name="ArmSite" type="xs:string"/>
+  <xs:element name="ArmMobile" type="xs:string"/>
+  <xs:element name="OtherComments" type="xs:string"/>
+</xs:schema>
