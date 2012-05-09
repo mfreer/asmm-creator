@@ -5,7 +5,9 @@ Module implementing MainWindow.
 """
 import datetime
 
-import egads
+#from egads.input import NetCdf
+import netCDF4
+
 
 from PyQt4 import QtGui
 from PyQt4.QtCore import QDate
@@ -541,48 +543,64 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                                '',
                                                'NetCDF files (*.nc *.cdf);;All Files (*.*)')
 
-        f = egads.input.NetCdf(str(filename))
+        f = netCDF4.Dataset(str(filename))
 
-        var_list = f.get_variable_list()
+
+        var_list = f.variables.keys()
         var_list.sort()
 
         try:
-            lat_min = f.get_attribute_value("geospatial_lat_min")
-            lat_max = f.get_attribute_value("geospatial_lat_max")
+
+            lat_min = f.__dict__['geospatial_lat_min']
+            lat_max = f.__dict__['geospatial_lat_max']
         except KeyError:
             [var_name, ok] = QInputDialog.getItem(self, "Latitude Variable Name", "ERROR: Latitude values not found. Please enter latitude variable name.", var_list, current=0, editable=False)
             if var_name and ok:
-                lat_values = f.read_variable(str(var_name))
+                lat_values = f.variables[str(var_name)][:]
                 lat_min = min(lat_values[lat_values != 0])
                 lat_max = max(lat_values[lat_values != 0])
 
+                lat_values = f.variables[str(var_name)][:]
+
         try:
-            lon_min = f.get_attribute_value("geospatial_lon_min")
-            lon_max = f.get_attribute_value("geospatial_lon_max")
+
+            lon_min = f.__dict__['geospatial_lon_min']
+            lon_max = f.__dict__['geospatial_lon_max']
         except KeyError:
             [var_name, ok] = QInputDialog.getItem(self, "Longitude Variable Name", "ERROR: Longitude values not found. Please select longitude variable name.", var_list, current=0, editable=False)
             if var_name and ok:
-                lon_values = f.read_variable(str(var_name))
+                lon_values = f.variables[str(var_name)][:]
                 lon_min = min(lon_values[lon_values != 0])
                 lon_max = max(lon_values[lon_values != 0])
 
         try:
-            alt_min = f.get_attribute_value("geospatial_vertical_min")
-            alt_max = f.get_attribute_value("geospatial_vertical_max")
+
+            alt_min = f.__dict__['geospatial_vertical_min']
+            alt_max = f.__dict__['geospatial_vertical_max']
         except KeyError:
             [var_name, ok] = QInputDialog.getItem(self, "Altitude Variable Name", "ERROR: Altitude values not found. Please enter altitude variable name.", var_list, current=0, editable=False)
             if var_name and ok:
-                alt_values = f.read_variable(str(var_name))
+                alt_values = f.variables[str(var_name)][:]
                 alt_min = min(alt_values[alt_values != 0])
                 alt_max = max(alt_values[alt_values != 0])
 
+        if lon_min:
+            self.westBoundLongitudeLine.setText(str(lon_min))
 
-        self.westBoundLongitudeLine.setText(str(lon_min))
-        self.eastBoundLongitudeLine.setText(str(lon_max))
-        self.northBoundLatitudeLine.setText(str(lat_max))
-        self.southBoundLatitudeLine.setText(str(lat_min))
-        self.minAltitudeLine.setText(str(alt_min))
-        self.maxAltitudeLine.setText(str(alt_max))
+        if lon_max:
+            self.eastBoundLongitudeLine.setText(str(lon_max))
+
+        if lat_max:
+            self.northBoundLatitudeLine.setText(str(lat_max))
+
+        if lat_min:
+            self.southBoundLatitudeLine.setText(str(lat_min))
+
+        if alt_min:
+            self.minAltitudeLine.setText(str(alt_min))
+
+        if alt_max:
+            self.maxAltitudeLine.setText(str(alt_max))
 
 
 
