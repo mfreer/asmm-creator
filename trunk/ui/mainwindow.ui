@@ -215,6 +215,13 @@
               </property>
              </widget>
             </item>
+            <item row="9" column="1">
+             <widget class="QPushButton" name="testMapButton">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="page_2">
@@ -222,8 +229,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>360</width>
+             <height>104</height>
             </rect>
            </property>
            <attribute name="label">
@@ -338,7 +345,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>694</width>
+             <width>651</width>
              <height>328</height>
             </rect>
            </property>
@@ -887,8 +894,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>478</width>
+             <height>302</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1094,7 +1101,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>694</width>
+             <width>398</width>
              <height>328</height>
             </rect>
            </property>
@@ -1308,8 +1315,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>371</width>
+             <height>274</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1454,8 +1461,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>292</width>
+             <height>249</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1586,8 +1593,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>202</width>
+             <height>249</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1718,8 +1725,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>269</width>
+             <height>205</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1882,8 +1889,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>342</width>
+             <height>228</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2033,8 +2040,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>303</width>
+             <height>246</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2336,8 +2343,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>314</width>
+             <height>226</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2615,8 +2622,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>709</width>
-             <height>310</height>
+             <width>96</width>
+             <height>99</height>
             </rect>
            </property>
            <attribute name="label">
@@ -2687,6 +2694,7 @@
      <string>About</string>
     </property>
     <addaction name="actionASMM_CreatorAbout"/>
+    <addaction name="actionLicense"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuAbout"/>
@@ -2720,6 +2728,11 @@
   <action name="actionASMM_CreatorAbout">
    <property name="text">
     <string>ASMM Creator...</string>
+   </property>
+  </action>
+  <action name="actionLicense">
+   <property name="text">
+    <string>License</string>
    </property>
   </action>
  </widget>

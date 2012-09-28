@@ -5,7 +5,6 @@ Module implementing MainWindow.
 """
 import datetime
 
-#from egads.input import NetCdf
 import netCDF4
 
 
@@ -33,6 +32,10 @@ from _version import _xml_version
 
 from asmm_xml import create_asmm_xml
 from asmm_xml import read_asmm_xml
+
+from mapnik_widget import MapnikWidget
+
+
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
@@ -527,7 +530,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSignature("")
     def on_readBoundingBoxButton_clicked(self):
         """
-        Slot documentation goes here.
+        Launches function allowing user to automatically populate geographic
+        bounding box information from a NetCDF file. If NetCDF has global attributes
+        geospatial_lat_max, geospatial_lat_min, geospatial_lon_max, geospatial_lon_min,
+        geospatial_alt_max or geospatial_alt_min, then these are used to populate
+        information. Otherwise, user is prompted to select correct fields from 
+        NetCDF file.
         """
 
         lat_min = None
@@ -602,5 +610,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if alt_max:
             self.maxAltitudeLine.setText(str(alt_max))
 
+    @pyqtSignature("")
+    def on_actionLicense_triggered(self):
+        """
+        Shows license text for ASMM creator. 
+        """
+
+        f = open('LICENSE.txt')
+
+        license_data = f.read()
+
+        f.close()
 
 
+        aboutBox = QMessageBox()
+        aboutBox.about(self, "About ASMM Metadata Creator", license_data)
+
+    @pyqtSignature("")
+    def on_testMapButton_clicked(self):
+        """
+        Slot documentation goes here.
+        """
+
+        map_widget = MapnikWidget(self)
+
+        map_widget.open('population.xml')
